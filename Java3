@@ -1,0 +1,155 @@
+import java.util.Scanner;
+
+class Employee {
+    String empName, empId, address, mailId, mobileNo;
+    double basicPay;
+    Scanner sc = new Scanner(System.in);
+
+    void readDetails() {
+        System.out.println("Enter employee name:");
+        empName = sc.nextLine();
+        System.out.println("Enter employee ID:");
+        empId = sc.nextLine();
+        System.out.println("Enter address:");
+        address = sc.nextLine();
+        System.out.println("Enter mail ID:");
+        mailId = sc.nextLine();
+        System.out.println("Enter mobile number:");
+        mobileNo = sc.nextLine();
+        System.out.println("Enter basic pay:");
+        basicPay = sc.nextDouble();
+    }
+
+    void displayDetails() {
+        System.out.println("\n--- Employee Details ---");
+        System.out.println("Name: " + empName);
+        System.out.println("ID: " + empId);
+        System.out.println("Address: " + address);
+        System.out.println("Mail ID: " + mailId);
+        System.out.println("Mobile No: " + mobileNo);
+        System.out.printf("Basic Pay: %.2f\n", basicPay);
+    }
+}
+
+class Programmer extends Employee {
+    void generatePaySlip() {
+        double da = basicPay * 97 / 100;
+        double hra = basicPay * 10 / 100;
+        double pf = basicPay * 12 / 100;
+        double staffClub = basicPay * 1 / 100;
+        double gross = basicPay + da + hra;
+        double net = gross - (pf + staffClub);
+
+        displayDetails();
+        System.out.println("Designation: Programmer");
+        System.out.printf("DA: %.2f\n", da);
+        System.out.printf("HRA: %.2f\n", hra);
+        System.out.printf("PF: %.2f\n", pf);
+        System.out.printf("Staff Club: %.2f\n", staffClub);
+        System.out.printf("Gross Pay: %.2f\n", gross);
+        System.out.printf("Net Pay: %.2f\n", net);
+    }
+}
+
+class AssistantProfessor extends Employee {
+    void generatePaySlip() {
+        double da = basicPay * 110 / 100;
+        double hra = basicPay * 20 / 100;
+        double pf = basicPay * 12 / 100;
+        double staffClub = basicPay * 5 / 100;
+        double gross = basicPay + da + hra;
+        double net = gross - (pf + staffClub);
+
+        displayDetails();
+        System.out.println("Designation: Assistant Professor");
+        System.out.printf("DA: %.2f\n", da);
+        System.out.printf("HRA: %.2f\n", hra);
+        System.out.printf("PF: %.2f\n", pf);
+        System.out.printf("Staff Club: %.2f\n", staffClub);
+        System.out.printf("Gross Pay: %.2f\n", gross);
+        System.out.printf("Net Pay: %.2f\n", net);
+    }
+}
+
+class AssociateProfessor extends Employee {
+    void generatePaySlip() {
+        double da = basicPay * 130 / 100;
+        double hra = basicPay * 30 / 100;
+        double pf = basicPay * 12 / 100;
+        double staffClub = basicPay * 10 / 100;
+        double gross = basicPay + da + hra;
+        double net = gross - (pf + staffClub);
+
+        displayDetails();
+        System.out.println("Designation: Associate Professor");
+        System.out.printf("DA: %.2f\n", da);
+        System.out.printf("HRA: %.2f\n", hra);
+        System.out.printf("PF: %.2f\n", pf);
+        System.out.printf("Staff Club: %.2f\n", staffClub);
+        System.out.printf("Gross Pay: %.2f\n", gross);
+        System.out.printf("Net Pay: %.2f\n", net);
+    }
+}
+
+class Professor extends Employee {
+    void generatePaySlip() {
+        double da = basicPay * 140 / 100;
+        double hra = basicPay * 40 / 100;
+        double pf = basicPay * 12 / 100;
+        double staffClub = basicPay * 15 / 100;
+        double gross = basicPay + da + hra;
+        double net = gross - (pf + staffClub);
+
+        displayDetails();
+        System.out.println("Designation: Professor");
+        System.out.printf("DA: %.2f\n", da);
+        System.out.printf("HRA: %.2f\n", hra);
+        System.out.printf("PF: %.2f\n", pf);
+        System.out.printf("Staff Club: %.2f\n", staffClub);
+        System.out.printf("Gross Pay: %.2f\n", gross);
+        System.out.printf("Net Pay: %.2f\n", net);
+    }
+}
+
+public class EmployeePaySlipApp {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter Employee Designation:");
+        System.out.println("1. Programmer");
+        System.out.println("2. Assistant Professor");
+        System.out.println("3. Associate Professor");
+        System.out.println("4. Professor");
+        System.out.print("Enter choice (1-4): ");
+
+        int choice = sc.nextInt();
+        sc.nextLine(); // Consume newline
+
+        switch (choice) {
+            case 1:
+                Programmer prog = new Programmer();
+                prog.readDetails();
+                prog.generatePaySlip();
+                break;
+            case 2:
+                AssistantProfessor asstProf = new AssistantProfessor();
+                asstProf.readDetails();
+                asstProf.generatePaySlip();
+                break;
+            case 3:
+                AssociateProfessor assocProf = new AssociateProfessor();
+                assocProf.readDetails();
+                assocProf.generatePaySlip();
+                break;
+            case 4:
+                Professor prof = new Professor();
+                prof.readDetails();
+                prof.generatePaySlip();
+                break;
+            default:
+                System.out.println("Invalid choice!");
+        }
+
+        sc.close();
+    }
+}
